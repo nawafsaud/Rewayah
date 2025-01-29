@@ -46,10 +46,12 @@ function showCreateStoryModal() {
                 <span class='close' onclick='closeModal()'>&times;</span>
                 <h2>إنشاء رواية جديدة</h2>
                 <form id='createStoryForm'>
-                    <label for='title'>عنوان الرواية:</label>
-                    <input type='text' id='title' name='title' required>
+                    <label for='name'>اسم الرواية:</label>
+                    <input type='text' id='name' name='name' required>
                     <label for='summary'>ملخص الرواية:</label>
                     <textarea id='summary' name='summary' required></textarea>
+                    <label for='coverImage'>رابط صورة الغلاف:</label>
+                    <input type='text' id='coverImage' name='coverImage' required>
                     <button type='submit'>نشر الرواية</button>
                 </form>
             </div>
@@ -61,18 +63,13 @@ function showCreateStoryModal() {
         event.preventDefault();
         const newStory = {
             id: Date.now(),
-            title: document.getElementById('title').value,
-            summary: document.getElementById('summary').value
+            name: document.getElementById('name').value,
+            summary: document.getElementById('summary').value,
+            coverImage: document.getElementById('coverImage').value
         };
         const stories = getStoredStories();
         stories.push(newStory);
-        const saved = saveStories(stories);
-        if (saved) {
-            console.log('تم حفظ الرواية بنجاح');
-        } else {
-            console.log('فشل في حفظ الرواية');
-        }
-        console.log('Saved stories:', saved, stories); // تسجيل الروايات المحفوظة
+        saveStories(stories);
         closeModal();
         loadStories();
     };
@@ -94,10 +91,10 @@ function editStory(storyId) {
             <div class='modal'>
                 <div class='modal-content'>
                     <span class='close' onclick='closeModal()'>&times;</span>
-                    <h2>تعديل رواية: ${story.title}</h2>
+                    <h2>تعديل رواية: ${story.name}</h2>
                     <form id='editStoryForm'>
-                        <label for='title'>عنوان الرواية:</label>
-                        <input type='text' id='title' name='title' value='${story.title}' required>
+                        <label for='name'>اسم الرواية:</label>
+                        <input type='text' id='name' name='name' value='${story.name}' required>
                         <label for='summary'>ملخص الرواية:</label>
                         <textarea id='summary' name='summary' required>${story.summary}</textarea>
                         <button type='submit'>تحديث الرواية</button>
@@ -108,7 +105,7 @@ function editStory(storyId) {
         document.body.insertAdjacentHTML('beforeend', modalHtml);
         document.getElementById('editStoryForm').onsubmit = function(event) {
             event.preventDefault();
-            story.title = document.getElementById('title').value;
+            story.name = document.getElementById('name').value;
             story.summary = document.getElementById('summary').value;
             saveStories(stories);
             closeModal();
