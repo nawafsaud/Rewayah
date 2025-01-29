@@ -67,6 +67,7 @@ function showCreateStoryModal() {
             summary: document.getElementById('summary').value,
             coverImage: document.getElementById('coverImage').value
         };
+        console.log('نموذج نشر الرواية:', newStory); // تسجيل القيم المدخلة
         const stories = getStoredStories();
         stories.push(newStory);
         saveStories(stories);
