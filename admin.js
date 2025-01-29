@@ -258,6 +258,13 @@ function showCreateStoryModal() {
     };
 }
 
+function closeModal() {
+    const modal = document.querySelector('.modal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
 // Navigation
 document.addEventListener('DOMContentLoaded', () => {
     // Handle navigation
