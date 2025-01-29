@@ -66,7 +66,13 @@ function showCreateStoryModal() {
         };
         const stories = getStoredStories();
         stories.push(newStory);
-        saveStories(stories);
+        const saved = saveStories(stories);
+        if (saved) {
+            console.log('تم حفظ الرواية بنجاح');
+        } else {
+            console.log('فشل في حفظ الرواية');
+        }
+        console.log('Saved stories:', saved, stories); // تسجيل الروايات المحفوظة
         closeModal();
         loadStories();
     };
