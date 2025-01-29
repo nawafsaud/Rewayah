@@ -48,10 +48,7 @@
         </div>
 
         <div class="story-actions">
-            <button id="addChapterBtn" class="primary-btn">
-                <i class="fas fa-plus"></i>
-                نشر فصل جديد
-            </button>
+            <button id="addChapterBtn" class="btn" onclick="showAddChapterModal()">إضافة فصل جديد</button>
             <button class="action-btn">
                 <i class="fas fa-heart"></i>
                 إعجاب
@@ -71,39 +68,42 @@
 
         <div class="story-chapters">
             <h2>الفصول</h2>
-            <div id="chaptersList" class="chapters-list">
-                <!-- Chapters will be added here dynamically -->
-                <div class="no-chapters">لم يتم نشر أي فصول بعد</div>
-            </div>
+            <button id="addChapterBtn" class="btn" onclick="showAddChapterModal()">إضافة فصل جديد</button>
+            <div id="chaptersList"></div>
         </div>
     </main>
 
-    <!-- Modal for adding new chapter -->
-    <div id="chapterModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>نشر فصل جديد</h2>
-                <button class="close-btn">&times;</button>
+    <script>
+    function showAddChapterModal() {
+        const modalHtml = `
+            <div class='modal'>
+                <div class='modal-content'>
+                    <span class='close' onclick='closeModal()'>&times;</span>
+                    <h2>إضافة فصل جديد</h2>
+                    <form id='addChapterForm'>
+                        <label for='chapterTitle'>عنوان الفصل:</label>
+                        <input type='text' id='chapterTitle' name='chapterTitle' required>
+                        <label for='chapterContent'>محتوى الفصل:</label>
+                        <textarea id='chapterContent' name='chapterContent' required></textarea>
+                        <button type='submit'>إضافة الفصل</button>
+                    </form>
+                </div>
             </div>
-            <form id="chapterForm">
-                <div class="form-group">
-                    <label for="chapterTitle">عنوان الفصل*</label>
-                    <input type="text" id="chapterTitle" required>
-                </div>
-                <div class="form-group">
-                    <label for="chapterContent">محتوى الفصل*</label>
-                    <textarea id="chapterContent" rows="15" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="chapterReady" required>
-                        الفصل جاهز للنشر
-                    </label>
-                </div>
-                <button type="submit" class="submit-btn">نشر الفصل</button>
-            </form>
-        </div>
-    </div>
+        `;
+
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+        document.getElementById('addChapterForm').onsubmit = function(event) {
+            event.preventDefault();
+            // هنا يمكنك إضافة الكود لحفظ الفصل الجديد
+            closeModal();
+        };
+    }
+
+    function closeModal() {
+        const modal = document.querySelector('.modal');
+        modal.remove();
+    }
+    </script>
 
     <!-- PayPal SDK -->
     <script src="https://www.paypal.com/sdk/js?client-id=AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R&currency=USD"></script>
