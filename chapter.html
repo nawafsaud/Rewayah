@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قراءة الفصل</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chapter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">قصص وروايات</div>
+            <div class="nav-links">
+                <a href="index.html">الرئيسية</a>
+                <a href="#" id="backToStory">العودة للرواية</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="chapter-container">
+        <div class="chapter-header">
+            <h1 id="storyTitle">عنوان الرواية</h1>
+            <h2 id="chapterTitle">عنوان الفصل</h2>
+            <div class="chapter-meta">
+                <span id="authorName">اسم الكاتب</span>
+                <span id="publishDate">تاريخ النشر</span>
+            </div>
+        </div>
+
+        <div class="chapter-navigation">
+            <button id="prevChapter" class="nav-btn">
+                <i class="fas fa-chevron-right"></i>
+                الفصل السابق
+            </button>
+            <span id="chapterNumber">الفصل 1</span>
+            <button id="nextChapter" class="nav-btn">
+                الفصل التالي
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+
+        <div class="chapter-content" id="chapterContent">
+            <!-- Chapter content will be loaded here -->
+        </div>
+
+        <div class="chapter-navigation bottom">
+            <button id="prevChapterBottom" class="nav-btn">
+                <i class="fas fa-chevron-right"></i>
+                الفصل السابق
+            </button>
+            <span id="chapterNumberBottom">الفصل 1</span>
+            <button id="nextChapterBottom" class="nav-btn">
+                الفصل التالي
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+    </main>
+
+    <script src="chapter.js"></script>
+</body>
+</html>

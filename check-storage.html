@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check Storage</title>
+</head>
+<body>
+    <pre id="output"></pre>
+    <script>
+        const stories = JSON.parse(localStorage.getItem('stories') || '[]');
+        document.getElementById('output').textContent = JSON.stringify(stories, null, 2);
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي - قصص وروايات</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">قصص وروايات</div>
+            <div class="nav-links">
+                <a href="index.html">الرئيسية</a>
+                <a href="publish.html" id="publishLink">نشر رواية</a>
+                <a href="profile.html" id="profileLink" class="active">الملف الشخصي</a>
+                <button id="loginBtn" class="btn" onclick="showLoginModal()">تسجيل الدخول</button>
+                <button id="logoutBtn" class="btn" onclick="auth.logout()" style="display: none;">تسجيل الخروج</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="profile-container">
+        <div class="profile-header">
+            <div class="profile-info">
+                <div class="avatar">
+                    <img src="" alt="الصورة الشخصية" id="userAvatar">
+                    <button class="edit-avatar-btn" onclick="document.getElementById('avatarInput').click()">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                    <input type="file" id="avatarInput" style="display: none" accept="image/*">
+                </div>
+                <div class="user-details">
+                    <h1 id="username"></h1>
+                    <div class="level-info">
+                        <span class="level">المستوى: <span id="userLevel">1</span></span>
+                        <div class="progress-bar">
+                            <div class="progress" id="levelProgress"></div>
+                        </div>
+                        <span class="exp">XP: <span id="userExp">0</span>/<span id="nextLevelExp">100</span></span>
+                    </div>
+                </div>
+                <div class="profile-stats">
+                    <div class="stat">
+                        <i class="fas fa-book"></i>
+                        <span>الروايات المنشورة: <span id="publishedCount">0</span></span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-eye"></i>
+                        <span>القراءات: <span id="readCount">0</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="published">رواياتي المنشورة</button>
+                <button class="tab-btn" data-tab="reading">قائمة القراءة</button>
+                <button class="tab-btn" data-tab="settings">الإعدادات</button>
+            </div>
+
+            <div class="tab-content">
+                <!-- Published Stories Tab -->
+                <div class="tab-pane active" id="published">
+                    <div class="stories-grid" id="publishedStories"></div>
+                </div>
+
+                <!-- Reading List Tab -->
+                <div class="tab-pane" id="reading">
+                    <div class="stories-grid" id="readingList"></div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div class="tab-pane" id="settings">
+                    <form id="settingsForm" class="settings-form">
+                        <div class="form-group">
+                            <label>البريد الإلكتروني</label>
+                            <input type="email" id="emailInput" placeholder="أدخل بريدك الإلكتروني">
+                        </div>
+
+                        <div class="form-group">
+                            <label>حساب PayPal للدعم المالي</label>
+                            <input type="email" id="paypalEmailInput" placeholder="أدخل بريدك الإلكتروني المرتبط بـ PayPal">
+                            <small class="form-help">سيتم استخدام هذا البريد لتلقي الدعم المالي من القراء. تأكد من أنه مرتبط بحساب PayPal نشط.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>إشعارات البريد الإلكتروني</label>
+                            <div class="checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="storyApprovalNotif" checked>
+                                    إشعار عند الموافقة على الرواية
+                                </label>
+                                <label>
+                                    <input type="checkbox" id="newChapterNotif" checked>
+                                    إشعار عند نشر فصل جديد في الروايات المتابعة
+                                </label>
+                                <label>
+                                    <input type="checkbox" id="supportNotif" checked>
+                                    إشعار عند تلقي دعم مالي من القراء
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn primary-btn">حفظ التغييرات</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

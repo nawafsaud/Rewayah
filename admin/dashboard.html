@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المشرف</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-dashboard">
+        <div class="admin-header">
+            <h1>لوحة تحكم المشرف</h1>
+            <button id="logoutBtn" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                تسجيل الخروج
+            </button>
+        </div>
+
+        <div class="admin-stats">
+            <div class="stat-card">
+                <h3>إجمالي الروايات</h3>
+                <div class="number">0</div>
+                <div class="stat-footer">
+                    <i class="fas fa-book"></i>
+                    رواية
+                </div>
+            </div>
+            <div class="stat-card">
+                <h3>المستخدمين النشطين</h3>
+                <div class="number">0</div>
+                <div class="stat-footer">
+                    <i class="fas fa-users"></i>
+                    مستخدم
+                </div>
+            </div>
+            <div class="stat-card">
+                <h3>الروايات المترجمة</h3>
+                <div class="number">0</div>
+                <div class="stat-footer">
+                    <i class="fas fa-language"></i>
+                    رواية
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <h2>الروايات المنتظرة الموافقة</h2>
+            <div class="pending-stories">
+                <!-- Pending stories will be loaded here -->
+                <p>لا توجد روايات في انتظار الموافقة</p>
+            </div>
+        </div>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>

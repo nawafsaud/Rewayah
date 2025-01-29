@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نشر رواية جديدة - قصص وروايات</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="publish.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">قصص وروايات</a>
+            </div>
+            <div class="nav-buttons">
+                <div id="authButtons">
+                    <button onclick="showLoginModal()" class="btn">تسجيل الدخول</button>
+                    <button onclick="showRegisterModal()" class="btn primary-btn">إنشاء حساب</button>
+                </div>
+                <div id="userInfo" style="display: none;"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="publish-container">
+        <div class="publish-header">
+            <h1>نشر رواية جديدة</h1>
+            <p>شارك روايتك مع القراء</p>
+        </div>
+
+        <form id="publishForm" class="publish-form">
+            <div class="form-section">
+                <h2>معلومات الرواية</h2>
+                
+                <div class="form-group">
+                    <label for="title">عنوان الرواية*</label>
+                    <input type="text" id="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="summary">ملخص الرواية*</label>
+                    <textarea id="summary" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="tags">التصنيفات (مفصولة بفواصل)*</label>
+                    <input type="text" id="tags" placeholder="رومانسي, خيال, مغامرة" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="coverImage">صورة الغلاف*</label>
+                    <input type="file" id="coverImage" accept="image/*" required>
+                    <img id="coverPreview" style="display: none; max-width: 200px; margin-top: 10px;">
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="isTranslation">
+                        هذه الرواية مترجمة
+                    </label>
+                </div>
+
+                <div class="form-group" id="originalAuthorGroup" style="display: none;">
+                    <label for="originalAuthor">اسم المؤلف الأصلي*</label>
+                    <input type="text" id="originalAuthor">
+                </div>
+
+                <div class="form-section">
+                    <h2>معلومات الدفع (اختياري)</h2>
+                    <div class="form-group">
+                        <label for="paypalEmail">البريد الإلكتروني لحساب PayPal</label>
+                        <input type="email" id="paypalEmail" placeholder="your.email@example.com">
+                        <small class="form-help">أدخل بريدك الإلكتروني المرتبط بحساب PayPal إذا كنت ترغب في تلقي الدعم من القراء</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn primary-btn">نشر الرواية</button>
+                <button type="button" onclick="window.location.href='index.html'" class="btn">إلغاء</button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2>تسجيل الدخول</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginUsername">اسم المستخدم</label>
+                    <input type="text" id="loginUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">كلمة المرور</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn primary-btn">تسجيل الدخول</button>
+                    <button type="button" onclick="closeModal('loginModal')" class="btn">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <h2>إنشاء حساب جديد</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerUsername">اسم المستخدم</label>
+                    <input type="text" id="registerUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">البريد الإلكتروني</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">كلمة المرور</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">تأكيد كلمة المرور</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn primary-btn">إنشاء حساب</button>
+                    <button type="button" onclick="closeModal('registerModal')" class="btn">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="publish.js"></script>
+</body>
+</html>

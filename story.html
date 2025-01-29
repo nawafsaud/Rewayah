@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عنوان الرواية - منصة القراءة العربية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="story.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">قصص وروايات</div>
+            <div class="nav-links">
+                <a href="index.html">الرئيسية</a>
+                <a href="#">تصفح</a>
+                <a href="#">حسابي</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="story-container">
+        <div class="story-header">
+            <div class="story-cover">
+                <img src="placeholder.jpg" alt="غلاف الرواية" id="storyCover">
+            </div>
+            <div class="story-info">
+                <h1 id="storyTitle">عنوان الرواية</h1>
+                <div class="author-info">
+                    <span id="authorType">كاتب أصلي</span>
+                    <span id="authorName">اسم الكاتب</span>
+                </div>
+                <div class="story-stats">
+                    <span><i class="fas fa-eye"></i> <span id="viewCount">0</span> مشاهدة</span>
+                    <span><i class="fas fa-heart"></i> <span id="likeCount">0</span> إعجاب</span>
+                    <span><i class="fas fa-book-open"></i> <span id="chapterCount">0</span> فصل</span>
+                </div>
+                <div class="story-tags" id="storyTags">
+                    <!-- Tags will be added here dynamically -->
+                </div>
+                <div class="support-author" style="display: none;">
+                    <h3>دعم الكاتب</h3>
+                    <p>إذا أعجبتك الرواية، يمكنك دعم الكاتب من خلال PayPal</p>
+                    <div id="paypalButtonContainer"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="story-actions">
+            <button id="addChapterBtn" class="primary-btn">
+                <i class="fas fa-plus"></i>
+                نشر فصل جديد
+            </button>
+            <button class="action-btn">
+                <i class="fas fa-heart"></i>
+                إعجاب
+            </button>
+            <button class="action-btn">
+                <i class="fas fa-bookmark"></i>
+                حفظ
+            </button>
+        </div>
+
+        <div class="story-summary">
+            <h2>ملخص الرواية</h2>
+            <p id="storySummary">
+                <!-- Story summary will be added here -->
+            </p>
+        </div>
+
+        <div class="story-chapters">
+            <h2>الفصول</h2>
+            <div id="chaptersList" class="chapters-list">
+                <!-- Chapters will be added here dynamically -->
+                <div class="no-chapters">لم يتم نشر أي فصول بعد</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for adding new chapter -->
+    <div id="chapterModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>نشر فصل جديد</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form id="chapterForm">
+                <div class="form-group">
+                    <label for="chapterTitle">عنوان الفصل*</label>
+                    <input type="text" id="chapterTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="chapterContent">محتوى الفصل*</label>
+                    <textarea id="chapterContent" rows="15" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="chapterReady" required>
+                        الفصل جاهز للنشر
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn">نشر الفصل</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R&currency=USD"></script>
+    <script src="story.js"></script>
+</body>
+</html>
