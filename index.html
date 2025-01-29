@@ -13,25 +13,19 @@
             <div class="nav-brand">قصص وروايات</div>
             <div class="nav-links">
                 <a href="index.html" class="active">الرئيسية</a>
-                <button id="createStoryBtn" class="btn" onclick="showCreateStoryModal()">إنشاء رواية</button>
-                <button id="createStoryBtn" class="btn" onclick="showCreateStoryModal()">إنشاء رواية</button>
-                <a href="publish.html" id="publishLink" style="display: none;">نشر رواية</a>
-                <a href="profile.html" id="profileLink" style="display: none;">الملف الشخصي</a>
                 <button id="loginBtn" class="btn" onclick="showLoginModal()">تسجيل الدخول</button>
-                <button id="logoutBtn" class="btn" onclick="auth.logout(); window.location.reload();" style="display: none;">تسجيل الخروج</button>
             </div>
         </nav>
     </header>
-
     <main>
-        <section class="stories-container">
-            <div id="storiesGrid" class="stories-grid">
-                <!-- Stories will be loaded here -->
-            </div>
+        <section id="storiesSection">
+            <h2>قصص وروايات</h2>
+            <div id="storiesList"></div>
         </section>
     </main>
-
-    <script src="auth.js"></script>
-    <script src="app.js"></script>
+    <script src="admin.js"></script>
+    <script>
+        // هنا يمكن إضافة الكود لتحميل الروايات وعرضها
+    </script>
 </body>
 </html>
