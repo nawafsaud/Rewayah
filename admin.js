@@ -176,13 +176,41 @@ function rejectStory(storyId) {
 }
 
 function deleteStory(storyId) {
-    if (confirm('هل أنت متأكد من حذف هذه الرواية؟')) {
-        const stories = getStoredStories();
-        const updatedStories = stories.filter(story => story.id !== storyId);
-        if (saveStories(updatedStories)) {
-            loadDashboardData();
-            alert('تم حذف الرواية بنجاح');
-        }
+    const stories = getStoredStories();
+    const updatedStories = stories.filter(story => story.id !== storyId);
+    saveStories(updatedStories);
+    loadStories();
+}
+
+function editStory(storyId) {
+    const stories = getStoredStories();
+    const storyIndex = stories.findIndex(story => story.id === storyId);
+    if (storyIndex !== -1) {
+        const story = stories[storyIndex];
+        const modalHtml = `
+            <div class='modal'>
+                <div class='modal-content'>
+                    <span class='close' onclick='closeModal()'>&times;</span>
+                    <h2>تعديل رواية: ${story.title}</h2>
+                    <form id='editStoryForm'>
+                        <label for='title'>عنوان الرواية:</label>
+                        <input type='text' id='title' name='title' value='${story.title}' required>
+                        <label for='summary'>ملخص الرواية:</label>
+                        <textarea id='summary' name='summary' required>${story.summary}</textarea>
+                        <button type='submit'>تحديث الرواية</button>
+                    </form>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+        document.getElementById('editStoryForm').onsubmit = function(event) {
+            event.preventDefault();
+            story.title = document.getElementById('title').value;
+            story.summary = document.getElementById('summary').value;
+            saveStories(stories);
+            closeModal();
+            loadStories();
+        };
     }
 }
 
@@ -232,8 +260,30 @@ function filterStories(status) {
     }
 }
 
+function loadStories() {
+    const stories = getStoredStories();
+    const storiesList = document.getElementById('storiesList');
+
+    if (storiesList) {
+        if (!stories || stories.length === 0) {
+            storiesList.innerHTML = '<div class="no-items">لا توجد روايات</div>';
+        } else {
+            storiesList.innerHTML = stories.map(story => `
+                <div class="story-item">
+                    <h3>${story.title}</h3>
+                    <p>${story.summary}</p>
+                    <button onclick="editStory('${story.id}')">تعديل</button>
+                    <button onclick="deleteStory('${story.id}')">حذف</button>
+                </div>
+            `).join('');
+        }
+    }
+}
+
+// استدعاء دالة تحميل الروايات عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', loadStories);
+
 function showCreateStoryModal() {
-    // إنشاء نموذج لإنشاء رواية جديدة
     const modalHtml = `
         <div class='modal'>
             <div class='modal-content'>
@@ -253,7 +303,6 @@ function showCreateStoryModal() {
     document.body.insertAdjacentHTML('beforeend', modalHtml);
     document.getElementById('createStoryForm').onsubmit = function(event) {
         event.preventDefault();
-        // هنا يمكنك إضافة الكود لحفظ الرواية
         closeModal();
     };
 }
@@ -267,7 +316,6 @@ function closeModal() {
 
 // Navigation
 document.addEventListener('DOMContentLoaded', () => {
-    // Handle navigation
     const navButtons = document.querySelectorAll('.nav-btn');
     const sections = document.querySelectorAll('.content-section');
 
@@ -275,11 +323,9 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             const targetSection = button.dataset.section;
             
-            // Update active button
             navButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
 
-            // Show target section
             sections.forEach(section => {
                 if (section.id === targetSection) {
                     section.classList.add('active');
@@ -290,22 +336,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Handle filter buttons
     const filterButtons = document.querySelectorAll('.filter-buttons .btn');
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             const status = button.dataset.status;
             
-            // Update active button
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
 
-            // Filter stories
             filterStories(status);
         });
     });
 
-    // Handle search
     const searchInput = document.querySelector('.search-input');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -329,7 +371,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Handle logout
     const logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', () => {
@@ -338,7 +379,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Check admin login
     const isAdmin = localStorage.getItem('isAdmin') === 'true';
     const loginForm = document.getElementById('loginForm');
     const dashboard = document.getElementById('dashboard');
@@ -352,7 +392,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dashboard) dashboard.style.display = 'none';
     }
 
-    // Handle admin login
     const adminLoginForm = document.getElementById('adminLoginForm');
     if (adminLoginForm) {
         adminLoginForm.addEventListener('submit', (e) => {
@@ -360,7 +399,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // In a real app, this would be a server request
             if (username === 'admin' && password === 'admin123') {
                 localStorage.setItem('isAdmin', 'true');
                 loginForm.style.display = 'none';

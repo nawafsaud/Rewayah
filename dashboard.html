@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - قصص وروايات</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">قصص وروايات</div>
+            <div class="nav-links">
+                <a href="dashboard.html" class="active">لوحة التحكم</a>
+                <button id="createStoryBtn" class="btn" onclick="showCreateStoryModal()">إنشاء رواية</button>
+                <button id="logoutBtn" class="btn" onclick="auth.logout(); window.location.reload();">تسجيل الخروج</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section id="storiesSection">
+            <h2>إدارة الروايات</h2>
+            <div id="storiesList"></div>
+        </section>
+    </main>
+    <script src="admin.js"></script>
+    <script>
+        // هنا يمكن إضافة الكود لتحميل الروايات وعرضها
+    </script>
+</body>
+</html>
