@@ -232,6 +232,32 @@ function filterStories(status) {
     }
 }
 
+function showCreateStoryModal() {
+    // إنشاء نموذج لإنشاء رواية جديدة
+    const modalHtml = `
+        <div class='modal'>
+            <div class='modal-content'>
+                <span class='close' onclick='closeModal()'>&times;</span>
+                <h2>إنشاء رواية جديدة</h2>
+                <form id='createStoryForm'>
+                    <label for='title'>عنوان الرواية:</label>
+                    <input type='text' id='title' name='title' required>
+                    <label for='summary'>ملخص الرواية:</label>
+                    <textarea id='summary' name='summary' required></textarea>
+                    <button type='submit'>نشر الرواية</button>
+                </form>
+            </div>
+        </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    document.getElementById('createStoryForm').onsubmit = function(event) {
+        event.preventDefault();
+        // هنا يمكنك إضافة الكود لحفظ الرواية
+        closeModal();
+    };
+}
+
 // Navigation
 document.addEventListener('DOMContentLoaded', () => {
     // Handle navigation
